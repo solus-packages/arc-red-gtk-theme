@@ -1,0 +1,26 @@
+name       : arc-red-gtk-theme
+version    : 1
+release    : 1
+source     :
+    - https://github.com/mclmza/arc-theme-Red/archive/1.tar.gz : 1de29a4a4069b7357736f73ff2d6061ff5520ea592a5dcd1084337cb2e1528ce
+license    : GPL-3.0
+component  : desktop.theme
+summary    : A red variation of Horst3180's Arc Theme.
+description: |
+    A red variation of Horst3180's Arc Theme.
+builddeps  :
+    - gtk2-engine-murrine
+setup      : |
+    rm common/gnome-shell/3.20
+    ln -s 3.18 common/gnome-shell/3.20
+    ./autogen.sh --enable-gnome-shell \
+                 --enable-metacity \
+                 --disable-unity \
+                 --enable-xfwm \
+                 --disable-cinnamon \
+                 --with-gnome=3.20 \
+                 %CONFOPTS%
+build      : |
+    %make
+install    : |
+    %make_install
